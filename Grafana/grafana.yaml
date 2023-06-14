@@ -489,7 +489,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "sum (container_fs_usage_bytes{device=\"/dev/nvme0n1p1\",id=\"/\"}) / sum (container_fs_limit_bytes{device=\"/dev/nvme0n1p1\",id=\"/\"}) * 100",
+              "expr": "sum (container_fs_usage_bytes{id=\"/\"}) / sum (container_fs_limit_bytes{id=\"/\"}) * 100",
               "instant": true,
               "interval": "",
               "legendFormat": "",
@@ -569,7 +569,8 @@ data:
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
-              "expr": "sum (container_fs_limit_bytes{device=~\"^/dev/nvme0n1p1\",id=\"/\"})",
+              "editorMode": "code",
+              "expr": "sum (container_fs_limit_bytes{id=\"/\"})",
               "instant": true,
               "interval": "10s",
               "intervalFactor": 1,
@@ -1064,7 +1065,8 @@ data:
                 "type": "prometheus",
                 "uid": "${datasource}"
               },
-              "expr": "sum (container_fs_usage_bytes{device=~\"^/dev/nvme0n1p1\",id=\"/\"})",
+              "editorMode": "code",
+              "expr": "sum (container_fs_usage_bytes{id=\"/\"})",
               "instant": true,
               "interval": "10s",
               "intervalFactor": 1,
