@@ -3190,10 +3190,37 @@ data:
       "weekStart": ""
     }
 ---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: grafana-sc
+  namespace: monitoring
+provisioner: kubernetes.io/gce-pd
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+reclaimPolicy: Delete
+parameters:
+  type: pd-standard
+  fstype: ext4
+  replication-type: none
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-pvc
+  namespace: monitoring
+spec:
+  storageClassName: grafana-sc
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 60Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: grafana-deployment
+  name: grafana
   namespace: monitoring
 spec:
   replicas: 1
@@ -3206,13 +3233,26 @@ spec:
       labels:
         app: grafana
     spec:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
       containers:
-      - name: grafana-container-name
+      - name: grafana
         image: grafana/grafana:latest
         ports:
         - name: grafana-port
           containerPort: 3000
+        resources:
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+          requests: 
+            memory: 500M
+            cpu: "500m"
         volumeMounts:
+          - mountPath: /var/lib/grafana
+            name: grafana-vol
           - mountPath: /etc/grafana/provisioning/datasources
             name: grafana-datasources-volume
             readOnly: false
@@ -3223,6 +3263,9 @@ spec:
             name: grafana-definition-volume
             readOnly: false
       volumes:
+        - name: grafana-vol
+          persistentVolumeClaim:
+            claimName: grafana-pvc
         - name: grafana-datasources-volume
           configMap:
               defaultMode: 420
