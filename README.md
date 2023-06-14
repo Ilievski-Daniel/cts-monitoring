@@ -7,8 +7,9 @@ The monitoring configuration comes with 2 pre-configured Grafana dashboards. You
 
 Before proceeding with the installation, ensure that you have the following prerequisites:
 
-Kubernetes cluster is set up and configured.
-The kubectl command-line tool is installed and configured to access your Kubernetes cluster.
+- Kubernetes cluster is set up and configured.
+
+- The kubectl command-line tool is installed and configured to access your Kubernetes cluster.
 
 ## Monitoring Architecture
 
