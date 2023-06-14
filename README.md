@@ -1,15 +1,14 @@
 # CTS Monitoring
 
-This repository provides a comprehensive monitoring solution that utilizes Prometheus and Grafana to collect, store, visualize metrics from Kubernetes.
+This repository provides a comprehensive monitoring solution that utilizes Prometheus and Grafana to collect, store, and visualize metrics from Kubernetes.
 
-The monitoring configuration comes with 2 already configured Grafana dashboards, you can access them under the General folder after setup.
-
+The monitoring configuration comes with 2 pre-configured Grafana dashboards. You can access them under the General folder after setup.
 ## Prerequisites
 
 Before proceeding with the installation, ensure that you have the following prerequisites:
 
 Kubernetes cluster is set up and configured.
-kubectl command-line tool is installed and configured to access your Kubernetes cluster.
+The kubectl command-line tool is installed and configured to access your Kubernetes cluster.
 
 ## Monitoring Architecture
 
@@ -35,8 +34,9 @@ kubectl command-line tool is installed and configured to access your Kubernetes 
     kubectl apply -f kube-state-metrics.yaml -f prometheus.yaml
     ```
 
-    - Kube State Metrics objects are required so we can get more in-depth metrics for the Kubernetes cluster.
-    - Prometheus server has all the configurations and is ready to scrape data from the Kubernetes Cluster.
+    - Kube State Metrics objects are required to obtain more in-depth metrics for the Kubernetes cluster.
+    
+    - The Prometheus server has all the necessary configurations and is ready to scrape data from the Kubernetes cluster.
 
 4. Change your directory to acess Grafana configuration files:
 
@@ -56,11 +56,13 @@ kubectl command-line tool is installed and configured to access your Kubernetes 
     kubectl get all -n monitoring
     ```
 
-- You can then get EXTERNAL-IP for the Grafana Server that you can access.
+- You can then obtain the EXTERNAL-IP for the Grafana Server that you can access.
 
-- You can simply access the Grafana server by typing: ```admin``` ```admin``` in both email and password fields, make sure to change it when you will get asked to do so.
+- To access the Grafana server, simply use the credentials "admin" for both the email and password fields. Make sure to change these credentials when prompted to do so.
 
-- Make sure to check the 2 already pre-defined Grafana Dashboards, one for general monitoring of the Kubernetes cluster and the second one for all the pods that are in the Kubernetes cluster (including the CTS Backend Application pods), these pre-defined dashboards are located under the General folder.
+- Make sure to check the 2 pre-defined Grafana Dashboards: one for general monitoring of the Kubernetes cluster and the second one for all the pods in the Kubernetes cluster (including the CTS Backend Application pods). 
+
+- <b>These pre-defined dashboards are located under the General folder.</b>
 
 ## Contact
 For any questions or inquiries, please contact: [Daniel Ilievski](https://www.linkedin.com/in/danielilievski/)
