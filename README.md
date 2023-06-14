@@ -13,7 +13,7 @@ kubectl command-line tool is installed and configured to access your Kubernetes 
 
 ## Monitoring Architecture
 
-![Monitoring Design](./Images/monitoring?raw=true)
+![Monitoring Design](./Images/monitoring.png?raw=true)
 
 ## Installation
 
