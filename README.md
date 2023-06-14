@@ -11,6 +11,10 @@ Before proceeding with the installation, ensure that you have the following prer
 Kubernetes cluster is set up and configured.
 kubectl command-line tool is installed and configured to access your Kubernetes cluster.
 
+## Monitoring Architecture
+
+![Monitoring Design](./Images/monitoring?raw=true)
+
 ## Installation
 
 1. Clone the repository:
@@ -56,7 +60,7 @@ kubectl command-line tool is installed and configured to access your Kubernetes 
 
 - You can simply access the Grafana server by typing: ```admin``` ```admin``` in both email and password fields, make sure to change it when you will get asked to do so.
 
-- Make sure to check the 2 already pre-defined Grafana Dashboards that are located under the General folder.
+- Make sure to check the 2 already pre-defined Grafana Dashboards, one for general monitoring of the Kubernetes cluster and the second one for all the pods that are in the Kubernetes cluster (including the CTS Backend Application pods), these pre-defined dashboards are located under the General folder.
 
 ## Contact
 For any questions or inquiries, please contact: [Daniel Ilievski](https://www.linkedin.com/in/danielilievski/)
