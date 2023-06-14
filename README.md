@@ -35,8 +35,8 @@ kubectl command-line tool is installed and configured to access your Kubernetes 
     kubectl apply -f kube-state-metrics.yaml -f prometheus.yaml
     ```
 
-    - This will first create Kube State Metrics objects that are required so we can get more in-depth metrics for the Kubernetes cluster.
-    - And then it will deploy the Prometheus server that has all the configurations already completed.
+    - Kube State Metrics objects are required so we can get more in-depth metrics for the Kubernetes cluster.
+    - Prometheus server has all the configurations and is ready to scrape data from the Kubernetes Cluster.
 
 4. Change your directory to acess Grafana configuration files:
 
