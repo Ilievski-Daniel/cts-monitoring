@@ -62,7 +62,7 @@ The kubectl command-line tool is installed and configured to access your Kuberne
 
 - Make sure to check the 2 pre-defined Grafana Dashboards: one for general monitoring of the Kubernetes cluster and the second one for all the pods in the Kubernetes cluster (including the CTS Backend Application pods). 
 
-- <b>These pre-defined dashboards are located under the General folder.</b>
+- These pre-defined dashboards are located under the General folder.
 
 ## Contact
 For any questions or inquiries, please contact: [Daniel Ilievski](https://www.linkedin.com/in/danielilievski/)
