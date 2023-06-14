@@ -3,6 +3,8 @@
 This repository provides a comprehensive monitoring solution that utilizes Prometheus and Grafana to collect, store, and visualize metrics from Kubernetes.
 
 The monitoring configuration comes with 2 pre-configured Grafana dashboards. You can access them under the General folder after setup.
+
+Both Prometheus and Grafana have persistent data, which is stored externally on Google Cloud using Storage Disks. 
 ## Prerequisites
 
 Before proceeding with the installation, ensure that you have the following prerequisites:
