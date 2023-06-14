@@ -204,6 +204,33 @@ data:
             target_label: systemd_service_name
             replacement: '${1}'
 ---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: prom-sc
+  namespace: monitoring
+provisioner: kubernetes.io/gce-pd
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+reclaimPolicy: Delete
+parameters:
+  type: pd-standard
+  fstype: ext4
+  replication-type: none
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prom-pvc
+  namespace: monitoring
+spec:
+  storageClassName: prom-sc
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -221,22 +248,31 @@ spec:
       labels:
         app: prometheus-server
     spec:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
       containers:
-        - name: prometheus-container
+        - name: prometheus
           image: prom/prometheus
           args:
-            - --config.file=/etc/prometheus/prometheus.yml
-            - --storage.tsdb.path=/prometheus/
+            - "--config.file=/etc/prometheus/prometheus.yml"
+            - "--storage.tsdb.path=/prometheus/"
           ports:
             - containerPort: 9090
           volumeMounts:
             - name: prometheus-config-volume
               mountPath: /etc/prometheus/
+            - name: prom-vol
+              mountPath: /prometheus
       volumes:
         - name: prometheus-config-volume
           configMap:
             defaultMode: 420
             name: prometheus-server-conf
+        - name: prom-vol
+          persistentVolumeClaim:
+            claimName: prom-pvc
 ---
 apiVersion: v1
 kind: Service
